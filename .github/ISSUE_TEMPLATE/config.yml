@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Discussions
+    url: https://github.com/pawanbhayde/awake/discussions
+    about: Ask questions, share use cases, and chat with the community.
+  - name: Security Vulnerabilities
+    url: https://github.com/pawanbhayde/awake/security/advisories/new
+    about: Privately report security concerns.

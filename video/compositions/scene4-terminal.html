@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: radial-gradient(circle at 50% 15%, #181820 0%, #080809 70%);
+          color: #f5f5f7;
+          font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .ambient-glow-green {
+          position: absolute;
+          width: 900px;
+          height: 500px;
+          border-radius: 50%;
+          filter: blur(130px);
+          pointer-events: none;
+          bottom: -100px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: radial-gradient(circle, rgba(48, 209, 88, 0.15) 0%, transparent 70%);
+        }
+
+        .grid-backdrop {
+          position: absolute;
+          inset: 0;
+          background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+          background-size: 80px 80px;
+          pointer-events: none;
+          mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 80%);
+          -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 80%);
+        }
+
+        .stage-center {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 1560px;
+        }
+
+        .badge-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 20px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          backdrop-filter: blur(16px);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #e5e5ea;
+        }
+        .badge-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #30d158;
+          box-shadow: 0 0 10px #30d158;
+        }
+
+        .split-stage {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 50px;
+          width: 100%;
+        }
+
+        .battery-card {
+          padding: 38px;
+          border-radius: 24px;
+          background: rgba(28, 28, 32, 0.85);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          backdrop-filter: blur(30px);
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .toggle-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          font-size: 16px;
+        }
+
+        .mac-switch-ui {
+          width: 46px;
+          height: 28px;
+          border-radius: 999px;
+          background: #0a84ff;
+          position: relative;
+        }
+        .mac-switch-knob {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #ffffff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal-window {
+          background: #141416;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+          font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+        }
+        .terminal-header {
+          height: 44px;
+          background: #1e1e22;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          display: flex;
+          align-items: center;
+          padding: 0 18px;
+          gap: 8px;
+        }
+        .terminal-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .terminal-title {
+          flex: 1;
+          text-align: center;
+          font-size: 13px;
+          color: #8e8e93;
+          font-family: -apple-system, sans-serif;
+        }
+        .terminal-content {
+          padding: 28px;
+          font-size: 18px;
+          line-height: 1.65;
+          color: #e5e5ea;
+        }
+        .term-prompt { color: #8e8e93; }
+        .term-cmd { color: #5ac8fa; font-weight: 600; }
+        .term-ok { color: #30d158; font-weight: 600; }
+        .term-stat { color: #ff9f0a; }
+      </style>
+
+      <div data-hf-id="hf-0ywv" id="root" data-composition-id="scene4" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-m1id" class="ambient-glow-green" data-layout-allow-overflow></div>
+        <div data-hf-id="hf-vhkf" class="grid-backdrop"></div>
+
+        <div data-hf-id="hf-pvw8" class="stage-center" id="scene4-container">
+          <div data-hf-id="hf-jb0p" style="text-align: center; margin-bottom: 36px;" id="s4-header">
+            <div data-hf-id="hf-4f1r" class="badge-pill" style="margin-bottom: 14px;">
+              <span data-hf-id="hf-nrck" class="badge-dot"></span>
+              <span data-hf-id="hf-1wdc">Intelligent Protection &bull; Shell Automation</span>
+            </div>
+            <h2 data-hf-id="hf-1crs" style="font-size: 54px; font-weight: 700; letter-spacing: -0.03em;">
+              Plug in. Or don’t. <span data-hf-id="hf-fzo0" style="color: #a1a1a6;">Automate anything.</span>
+            </h2>
+          </div>
+
+          <div data-hf-id="hf-er3l" class="split-stage">
+            <!-- Left: Battery Safeguards -->
+            <div data-hf-id="hf-3msm" class="battery-card" id="s4-card-left">
+              <div data-hf-id="hf-1n3q" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                <div data-hf-id="hf-bawb" style="font-size: 22px; font-weight: 700; color: #ffffff;">Battery &amp; Power Guard</div>
+                <div data-hf-id="hf-fn44" class="badge-pill" style="padding: 6px 14px; color: #30d158; border-color: rgba(48,209,88,0.3); font-size: 13px;">
+                  PROTECTED
+                </div>
+              </div>
+
+              <!-- Battery Level Bar -->
+              <div data-hf-id="hf-fok0" style="margin-bottom: 24px;">
+                <div data-hf-id="hf-pcso" style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; color: #a1a1a6;">
+                  <span data-hf-id="hf-u65v">Current Battery</span>
+                  <span data-hf-id="hf-akts" style="font-weight: 700; color: #ffffff;">94% &bull; AC Connected ⚡️</span>
+                </div>
+                <div data-hf-id="hf-5de7" style="width: 100%; height: 12px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden;">
+                  <div data-hf-id="hf-j0ty" style="width: 94%; height: 100%; background: linear-gradient(90deg, #30d158, #34c759); border-radius: 999px;"></div>
+                </div>
+              </div>
+
+              <div data-hf-id="hf-sgmr" class="toggle-row">
+                <div data-hf-id="hf-yeow">
+                  <strong data-hf-id="hf-uw2n" style="color: #ffffff;">Low Battery Cutoff Threshold</strong><br data-hf-id="hf-x5px" />
+                  <span data-hf-id="hf-6x04" style="font-size: 13px; color: #8e8e93;">Instantly ends keep-awake to preserve battery life</span>
+                </div>
+                <span data-hf-id="hf-xy5n" class="badge-pill" style="padding: 4px 10px; font-size: 14px; color: #ff9f0a; border-color: rgba(255,159,10,0.3);">20%</span>
+              </div>
+
+              <div data-hf-id="hf-gi60" class="toggle-row" style="border-bottom: none;">
+                <div data-hf-id="hf-y7yw">
+                  <strong data-hf-id="hf-x24r" style="color: #ffffff;">Require AC Power Adapter</strong><br data-hf-id="hf-rsrt" />
+                  <span data-hf-id="hf-ff6u" style="font-size: 13px; color: #8e8e93;">Auto-pauses session if charger unplugged</span>
+                </div>
+                <div data-hf-id="hf-qeq9" class="mac-switch-ui"><div data-hf-id="hf-vjtn" class="mac-switch-knob"></div></div>
+              </div>
+            </div>
+
+            <!-- Right: Terminal Simulator -->
+            <div data-hf-id="hf-25lw" class="terminal-window" id="s4-card-right">
+              <div data-hf-id="hf-0zlm" class="terminal-header">
+                <span data-hf-id="hf-k8uo" class="terminal-dot dot-red"></span>
+                <span data-hf-id="hf-nlgf" class="terminal-dot dot-yellow"></span>
+                <span data-hf-id="hf-wnn4" class="terminal-dot dot-green"></span>
+                <span data-hf-id="hf-eyl2" class="terminal-title">zsh &mdash; awake-cli &mdash; 80&times;24</span>
+              </div>
+              <div data-hf-id="hf-vl7c" class="terminal-content">
+                <p data-hf-id="hf-q1an"><span data-hf-id="hf-oidw" class="term-prompt">user@macbook-pro ~ % </span><span data-hf-id="hf-v3fm" class="term-cmd" id="s4-term-line1">awake start 2h --clamshell</span></p>
+                <p data-hf-id="hf-0obu" id="s4-term-out1" style="margin-top: 10px; color: #30d158;">&check; Awake session started: 2 hours (Clamshell Mode Enabled)</p>
+                <p data-hf-id="hf-jkiq" style="margin-top: 18px;"><span data-hf-id="hf-vrxo" class="term-prompt">user@macbook-pro ~ % </span><span data-hf-id="hf-xqou" class="term-cmd" id="s4-term-line2">awake status</span></p>
+                <div data-hf-id="hf-thc0" id="s4-term-out2" style="margin-top: 10px; background: rgba(255,255,255,0.04); padding: 14px; border-radius: 8px; border-left: 3px solid #30d158;">
+                  <span data-hf-id="hf-pd2m" class="term-ok">&bull; STATUS: ACTIVE</span><br data-hf-id="hf-szow" />
+                  <span data-hf-id="hf-lllf" class="term-stat">Time Remaining:</span> 01:59:58<br data-hf-id="hf-sldv" />
+                  <span data-hf-id="hf-gw1f" class="term-stat">Clamshell Assertion:</span> Active<br data-hf-id="hf-qluq" />
+                  <span data-hf-id="hf-uiw6" class="term-stat">Power Source:</span> AC Adapter (94%)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["scene4"] = tl;
+
+        // Entrance
+        tl.fromTo("#s4-header", { y: -24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.1);
+        tl.fromTo("#s4-card-left", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.3);
+        tl.fromTo("#s4-card-right", { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.5);
+
+        // Terminal typing and output cascade
+        tl.fromTo("#s4-term-line1", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 1.0);
+        tl.fromTo("#s4-term-out1", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.7);
+        tl.fromTo("#s4-term-line2", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.3);
+        tl.fromTo("#s4-term-out2", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.0);
+
+        // Exit transition
+        tl.to("#scene4-container", { opacity: 0, scale: 0.97, duration: 0.5, ease: "power2.in" }, 5.0);
+
+        tl.seek(0);
+      </script>
+    </template>
+  </body>
+</html>

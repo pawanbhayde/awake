@@ -76,7 +76,7 @@ func formatDuration(_ interval: TimeInterval) -> String {
 
 func printHelp() {
     print("""
-    \u{001B}[1m\u{001B}[33m⚡️ Awake CLI\u{001B}[0m v\(version) — Mac Keep-Awake Utility
+    \u{001B}[1m\u{001B}[33m⚡️ Awake CLI\u{001B}[0m v\(version) - Mac Keep-Awake Utility
 
     \u{001B}[1mUSAGE:\u{001B}[0m
       awake [options] [command [args...]]

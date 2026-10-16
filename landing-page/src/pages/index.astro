@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-	title="Awake — Keep your Mac awake"
+	title="Awake - Keep your Mac awake"
 	description="100% Free, zero-dependency, open-source native macOS keep-awake utility. Timed sessions, closed-lid clamshell mode, battery safeguards, app triggers, and CLI automation right from your menu bar."
 >
 	<div hidden><!--$--><!--/$--></div>
@@ -135,7 +135,7 @@ import Layout from '../layouts/Layout.astro';
 						<span>Wide Awake.</span>
 					</h1>
 					<p>
-						Keep your Mac awake while your long builds, machine learning models, and AI agents run—even with the lid closed.
+						Keep your Mac awake while your long builds, machine learning models, and AI agents run, even with the lid closed.
 					</p>
 					<div class="hero-actions">
 						<a
@@ -344,7 +344,7 @@ import Layout from '../layouts/Layout.astro';
 								<span>Keep it running.</span>
 							</h2>
 							<p>
-								Run long compiles, dataset transfers, and LLM inferences with your MacBook lid closed—without needing an external monitor.
+								Run long compiles, dataset transfers, and LLM inferences with your MacBook lid closed, without needing an external monitor.
 							</p>
 						</div>
 
@@ -481,7 +481,7 @@ import Layout from '../layouts/Layout.astro';
 										<span class="light-yellow"></span>
 										<span class="light-green"></span>
 									</div>
-									<span class="terminal-title">zsh — awake-cli</span>
+									<span class="terminal-title">zsh: awake-cli</span>
 									<button class="terminal-copy-btn" id="copy-cli-btn" title="Copy CLI command">Copy</button>
 								</div>
 								<pre class="terminal-body"><code><span class="term-dim">$</span> <span class="term-cmd">awake start</span> 2h --clamshell
@@ -513,7 +513,7 @@ import Layout from '../layouts/Layout.astro';
 						</svg>
 						<p>
 							<strong>Universal &amp; Native.</strong>
-							<span>Compiled for Apple Silicon (M1–M4) and Intel Macs on macOS 14 Sonoma or later.</span>
+							<span>Compiled for Apple Silicon (M1-M4) and Intel Macs on macOS 14 Sonoma or later.</span>
 						</p>
 					</div>
 
@@ -980,6 +980,39 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+	/* Navbar layout and clear spacing between FAQ and theme toggle */
+	:global(.site-nav-inner) {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 2rem !important;
+	}
+	:global(.desktop-nav-links) {
+		margin-inline: auto !important;
+		display: flex !important;
+		align-items: center !important;
+		gap: 0.25rem !important;
+	}
+	:global(.nav-actions) {
+		display: flex !important;
+		align-items: center !important;
+		gap: 0.875rem !important;
+		margin-left: 2rem !important;
+		flex-shrink: 0 !important;
+	}
+	@media (max-width: 1050px) {
+		:global(.site-nav-inner) {
+			gap: 1rem !important;
+		}
+		:global(.nav-actions) {
+			margin-left: 1rem !important;
+		}
+		:global(.desktop-nav-links a) {
+			padding-inline: 0.45rem !important;
+			font-size: 0.775rem !important;
+		}
+	}
+
 	/* Theme toggle icon switching */
 	:global(html.light) .sun-icon {
 		opacity: 0;

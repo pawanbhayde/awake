@@ -1,6 +1,6 @@
-# Awake — Implementation Task List & Roadmap
+# Awake - Implementation Task List & Roadmap
 
-> **Vision:** A 100% free, fully open-source, modern native macOS menu bar app inspired by WakeBee — keeping your Mac awake for AI agents, long builds, batch rendering, and downloads (even with the lid closed), with zero paywalls, zero subscriptions, and complete user privacy.
+> **Vision:** A 100% free, fully open-source, modern native macOS menu bar app inspired by WakeBee - keeping your Mac awake for AI agents, long builds, batch rendering, and downloads (even with the lid closed), with zero paywalls, zero subscriptions, and complete user privacy.
 
 ---
 

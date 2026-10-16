@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Release DMG
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer || true
+          xcodebuild -version
+
+      - name: Build Awake Release DMG
+        run: |
+          chmod +x scripts/build_dmg.sh
+          ./scripts/build_dmg.sh
+
+      - name: Generate Checksum
+        run: |
+          cd dist
+          shasum -a 256 Awake.dmg > Awake.dmg.sha256
+          cat Awake.dmg.sha256
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/Awake.dmg
+            dist/Awake.dmg.sha256
+          draft: false
+          prerelease: false
+          generate_release_notes: true

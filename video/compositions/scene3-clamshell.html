@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: radial-gradient(circle at 50% 25%, #181926 0%, #080809 72%);
+          color: #f5f5f7;
+          font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .ambient-glow-amber {
+          position: absolute;
+          width: 900px;
+          height: 500px;
+          border-radius: 50%;
+          filter: blur(130px);
+          pointer-events: none;
+          top: -80px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: radial-gradient(circle, rgba(255, 149, 0, 0.28) 0%, transparent 70%);
+        }
+
+        .grid-backdrop {
+          position: absolute;
+          inset: 0;
+          background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+          background-size: 80px 80px;
+          pointer-events: none;
+          mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 80%);
+          -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 20%, transparent 80%);
+        }
+
+        .stage-center {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 1560px;
+        }
+
+        .badge-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 20px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          backdrop-filter: blur(16px);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #e5e5ea;
+        }
+        .badge-dot-amber {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #ff9f0a;
+          box-shadow: 0 0 10px #ff9f0a;
+        }
+        .badge-dot-green {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #30d158;
+          box-shadow: 0 0 10px #30d158;
+        }
+
+        .gradient-coffee {
+          background: linear-gradient(135deg, #ffaa40 0%, #f37021 50%, #e64010 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .clamshell-container {
+          display: flex;
+          align-items: center;
+          gap: 80px;
+          width: 100%;
+          margin-top: 20px;
+        }
+        .clamshell-visual {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+        }
+        .macbook-chassis {
+          width: 580px;
+          height: 380px;
+          background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 20px;
+          box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .macbook-lid-lip {
+          position: absolute;
+          bottom: 0;
+          width: 140px;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.14);
+          border-radius: 4px 4px 0 0;
+        }
+        .apple-glow-logo {
+          font-size: 64px;
+          color: rgba(255, 255, 255, 0.9);
+          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+        }
+        .clamshell-status-badge {
+          margin-top: 24px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 24px;
+          background: rgba(48, 209, 88, 0.15);
+          border: 1px solid rgba(48, 209, 88, 0.4);
+          border-radius: 999px;
+          color: #30d158;
+          font-weight: 600;
+          font-size: 17px;
+          box-shadow: 0 8px 24px rgba(48, 209, 88, 0.2);
+        }
+
+        .usecase-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+          flex: 1;
+        }
+        .usecase-card {
+          padding: 26px 28px;
+          border-radius: 18px;
+          background: rgba(26, 26, 30, 0.85);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(20px);
+        }
+        .usecase-card h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #ffffff;
+          margin-bottom: 6px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .usecase-card p {
+          font-size: 15px;
+          color: #a1a1a6;
+          line-height: 1.45;
+        }
+      </style>
+
+      <div data-hf-id="hf-qvwq" id="root" data-composition-id="scene3" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-bg2h" class="ambient-glow-amber" data-layout-allow-overflow></div>
+        <div data-hf-id="hf-vhkf" class="grid-backdrop"></div>
+
+        <div data-hf-id="hf-a363" class="stage-center" id="scene3-container">
+          <div data-hf-id="hf-1rdk" style="text-align: center; margin-bottom: 30px;" id="s3-header">
+            <div data-hf-id="hf-4f1r" class="badge-pill" style="margin-bottom: 14px;">
+              <span data-hf-id="hf-pkbq" class="badge-dot-amber"></span>
+              <span data-hf-id="hf-cm05">Zero External Display Required</span>
+            </div>
+            <h2 data-hf-id="hf-prh7" style="font-size: 60px; font-weight: 700; letter-spacing: -0.03em;">
+              Close the lid. <span data-hf-id="hf-f2nv" class="gradient-coffee">Keep it running.</span>
+            </h2>
+            <p data-hf-id="hf-54bd" style="font-size: 22px; color: #a1a1a6; margin-top: 10px;">
+              Your background processes stay fully powered. Sleep is safely restored on timer finish.
+            </p>
+          </div>
+
+          <div data-hf-id="hf-q4dt" class="clamshell-container">
+            <div data-hf-id="hf-7b1v" class="clamshell-visual" id="s3-mac-visual">
+              <div data-hf-id="hf-nr4p" class="macbook-chassis">
+                <div data-hf-id="hf-f4vg" class="apple-glow-logo" id="s3-apple-logo"></div>
+                <div data-hf-id="hf-vwra" class="macbook-lid-lip"></div>
+              </div>
+              <div data-hf-id="hf-55o1" class="clamshell-status-badge" id="s3-status-pill">
+                <span data-hf-id="hf-94ly" class="badge-dot-green"></span>
+                <span data-hf-id="hf-wu2p">Closed-Lid Mode Active &bull; IOPMAssertion</span>
+              </div>
+            </div>
+
+            <div data-hf-id="hf-s5pj" class="usecase-grid" id="s3-grid">
+              <div data-hf-id="hf-t3yx" class="usecase-card" id="s3-card-1">
+                <h3 data-hf-id="hf-p127"><span data-hf-id="hf-3bo7">🧠</span> Local LLMs &amp; AI</h3>
+                <p data-hf-id="hf-5kkt">Train PyTorch models, run Ollama or LM Studio inferences overnight without interruptions.</p>
+              </div>
+              <div data-hf-id="hf-x22y" class="usecase-card" id="s3-card-2">
+                <h3 data-hf-id="hf-yr77"><span data-hf-id="hf-8vs5">⚙️</span> Heavy Compiles</h3>
+                <p data-hf-id="hf-h0or">Xcode builds, Cargo, Docker containers, and complex CI runs execute at 100% CPU speed.</p>
+              </div>
+              <div data-hf-id="hf-106z" class="usecase-card" id="s3-card-3">
+                <h3 data-hf-id="hf-8z99"><span data-hf-id="hf-24e9">🤖</span> AI Agent Workflows</h3>
+                <p data-hf-id="hf-ty20">Keep autonomous browser agents and multi-hour orchestrations alive in your backpack or desk.</p>
+              </div>
+              <div data-hf-id="hf-dipg" class="usecase-card" id="s3-card-4">
+                <h3 data-hf-id="hf-o0e1"><span data-hf-id="hf-4ua9">🎬</span> 4K Renders &amp; Exports</h3>
+                <p data-hf-id="hf-godl">Export Final Cut Pro, Blender scenes, and multi-gigabyte cloud uploads with full peace of mind.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["scene3"] = tl;
+
+        // Entrance
+        tl.fromTo("#s3-header", { y: -24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 0.1);
+        tl.fromTo("#s3-mac-visual", { scale: 0.88, opacity: 0, x: -40 }, { scale: 1.0, opacity: 1, x: 0, duration: 0.9, ease: "power3.out" }, 0.3);
+        tl.fromTo("#s3-status-pill", { scale: 0.8, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.9);
+
+        // 4 use cases stagger
+        tl.fromTo("#s3-card-1", { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.0);
+        tl.fromTo("#s3-card-2", { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.3);
+        tl.fromTo("#s3-card-3", { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.6);
+        tl.fromTo("#s3-card-4", { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 1.9);
+
+        // Apple logo pulse
+        tl.to("#s3-apple-logo", { filter: "drop-shadow(0 0 35px rgba(255, 255, 255, 0.95))", duration: 1.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2.0);
+
+        // Exit transition
+        tl.to("#scene3-container", { opacity: 0, scale: 0.97, duration: 0.5, ease: "power2.in" }, 5.5);
+
+        tl.seek(0);
+      </script>
+    </template>
+  </body>
+</html>

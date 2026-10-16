@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-macos:
+    name: Build macOS App & DMG
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer || true
+          xcodebuild -version
+
+      - name: Build Awake and Release DMG
+        run: |
+          chmod +x scripts/build_dmg.sh
+          ./scripts/build_dmg.sh
+
+      - name: Verify DMG Artifact
+        run: |
+          test -f dist/Awake.dmg
+          ls -lh dist/Awake.dmg
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Awake-macOS-Build
+          path: dist/Awake.dmg
+          if-no-files-found: error
+
+  build-landing-page:
+    name: Build Landing Page
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: landing-page
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile || pnpm install
+
+      - name: Build Astro site
+        run: pnpm build
+
+  check-punctuation-hygiene:
+    name: Check Punctuation Hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan for em-dashes and en-dashes
+        run: |
+          python3 -c "
+          import os, sys
+          bad_chars = ['\u2014', '\u2013']
+          failed = False
+          ignored_dirs = {'.git', 'node_modules', '.astro', 'dist', 'DerivedData'}
+          
+          for root, dirs, files in os.walk('.'):
+              dirs[:] = [d for d in dirs if d not in ignored_dirs]
+              for f in files:
+                  if f.endswith(('.png', '.jpg', '.jpeg', '.mp3', '.icns', '.car', '.xcuserdatad', '.xcuserstate')):
+                      continue
+                  p = os.path.join(root, f)
+                  try:
+                      with open(p, 'r', encoding='utf-8') as file:
+                          for line_num, line in enumerate(file, 1):
+                              for ch in bad_chars:
+                                  if ch in line:
+                                      print(f'Error: Found disallowed punctuation in {p}:{line_num}')
+                                      failed = True
+                  except UnicodeDecodeError:
+                      pass
+          if failed:
+              sys.exit(1)
+          print('Clean: Zero em-dashes or en-dashes found.')
+          "

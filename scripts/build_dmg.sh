@@ -7,6 +7,15 @@ APP_NAME="Awake"
 DMG_NAME="${APP_NAME}.dmg"
 STAGING_DIR="${BUILD_DIR}/dmg_staging"
 
+# Configure Xcode developer directory if not already set
+if [ -z "${DEVELOPER_DIR}" ]; then
+    if [ -d "/Applications/Xcode.app/Contents/Developer" ]; then
+        export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+    elif command -v xcode-select >/dev/null 2>&1; then
+        export DEVELOPER_DIR="$(xcode-select -p 2>/dev/null || echo "")"
+    fi
+fi
+
 # Ensure all icons are up to date
 if [ -f "${PROJECT_DIR}/scripts/generate_all_icons.sh" ]; then
     "${PROJECT_DIR}/scripts/generate_all_icons.sh"
@@ -17,7 +26,6 @@ mkdir -p "${BUILD_DIR}"
 rm -rf "${STAGING_DIR}"
 mkdir -p "${STAGING_DIR}"
 
-DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer" \
 xcodebuild -project "${PROJECT_DIR}/awake.xcodeproj" \
            -scheme awake \
            -configuration Release \
@@ -25,7 +33,8 @@ xcodebuild -project "${PROJECT_DIR}/awake.xcodeproj" \
            -destination 'platform=macOS' \
            build \
            CODE_SIGN_IDENTITY="" \
-           CODE_SIGNING_REQUIRED=NO
+           CODE_SIGNING_REQUIRED=NO \
+           CODE_SIGNING_ALLOWED=NO
 
 APP_BUNDLE="${BUILD_DIR}/DerivedData/Build/Products/Release/${APP_NAME}.app"
 
@@ -50,14 +59,34 @@ echo "=== Configuring Info.plist with URL Scheme (awake://) ==="
 /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes array" "${APP_BUNDLE}/Contents/Info.plist" 2>/dev/null || true
 /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes:0 string awake" "${APP_BUNDLE}/Contents/Info.plist" 2>/dev/null || true
 
-# Register with macOS LaunchServices
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "${APP_BUNDLE}" 2>/dev/null || true
+# Register with macOS LaunchServices if available
+if [ -f "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister" ]; then
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "${APP_BUNDLE}" 2>/dev/null || true
+fi
 
-echo "=== Compiling & Bundling Awake CLI ==="
-DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer" swiftc -O "${PROJECT_DIR}/awake-cli/main.swift" \
+echo "=== Compiling Universal Awake CLI (arm64 + x86_64) ==="
+swiftc -O "${PROJECT_DIR}/awake-cli/main.swift" \
        -target arm64-apple-macos14.0 \
        -framework Foundation -framework IOKit \
-       -o "${PROJECT_DIR}/awake-cli/awake"
+       -o "${PROJECT_DIR}/awake-cli/awake_arm64" 2>/dev/null || true
+
+swiftc -O "${PROJECT_DIR}/awake-cli/main.swift" \
+       -target x86_64-apple-macos14.0 \
+       -framework Foundation -framework IOKit \
+       -o "${PROJECT_DIR}/awake-cli/awake_x86_64" 2>/dev/null || true
+
+if [ -f "${PROJECT_DIR}/awake-cli/awake_arm64" ] && [ -f "${PROJECT_DIR}/awake-cli/awake_x86_64" ]; then
+    lipo -create -output "${PROJECT_DIR}/awake-cli/awake" \
+         "${PROJECT_DIR}/awake-cli/awake_arm64" \
+         "${PROJECT_DIR}/awake-cli/awake_x86_64"
+    rm -f "${PROJECT_DIR}/awake-cli/awake_arm64" "${PROJECT_DIR}/awake-cli/awake_x86_64"
+elif [ -f "${PROJECT_DIR}/awake-cli/awake_arm64" ]; then
+    mv "${PROJECT_DIR}/awake-cli/awake_arm64" "${PROJECT_DIR}/awake-cli/awake"
+else
+    swiftc -O "${PROJECT_DIR}/awake-cli/main.swift" \
+           -framework Foundation -framework IOKit \
+           -o "${PROJECT_DIR}/awake-cli/awake"
+fi
 
 cp "${PROJECT_DIR}/awake-cli/awake" "${APP_BUNDLE}/Contents/Resources/awake"
 chmod 755 "${APP_BUNDLE}/Contents/Resources/awake"
@@ -69,8 +98,10 @@ ln -s /Applications "${STAGING_DIR}/Applications"
 # Volume Icon for DMG
 if [ -f "${PROJECT_DIR}/awake/AppIcon.icns" ]; then
     cp "${PROJECT_DIR}/awake/AppIcon.icns" "${STAGING_DIR}/.VolumeIcon.icns"
-    SetFile -c icnC "${STAGING_DIR}/.VolumeIcon.icns" 2>/dev/null || true
-    SetFile -a C "${STAGING_DIR}" 2>/dev/null || true
+    if command -v SetFile >/dev/null 2>&1; then
+        SetFile -c icnC "${STAGING_DIR}/.VolumeIcon.icns" 2>/dev/null || true
+        SetFile -a C "${STAGING_DIR}" 2>/dev/null || true
+    fi
 fi
 
 rm -f "${BUILD_DIR}/${DMG_NAME}"
