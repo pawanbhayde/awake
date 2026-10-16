@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Awake — Keep your Mac awake",
+	description = "100% Free, zero-dependency, open-source macOS keep-awake utility. Timed sessions, closed-lid clamshell mode, battery safeguards, and CLI automation right from your menu bar."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="light antialiased" data-scroll-behavior="smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#ffffff" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="application-name" content="Awake" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/awake-icon.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/awake-icon.png" />
+	</head>
+	<body>
+		<slot />
+		<script is:inline>
+			// Theme toggle handler
+			const theme = localStorage.getItem('awake-appearance') || 
+				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+				document.documentElement.classList.remove('light');
+			} else {
+				document.documentElement.classList.add('light');
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
+	</body>
+</html>

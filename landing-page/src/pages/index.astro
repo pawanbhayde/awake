@@ -1,0 +1,1492 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Awake — Keep your Mac awake"
+	description="100% Free, zero-dependency, open-source native macOS keep-awake utility. Timed sessions, closed-lid clamshell mode, battery safeguards, app triggers, and CLI automation right from your menu bar."
+>
+	<div hidden><!--$--><!--/$--></div>
+	<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black">Skip to content</a>
+
+	<div class="landing-page">
+		<header class="site-nav">
+			<nav aria-label="Main navigation" class="site-nav-inner">
+				<a aria-label="Awake home" class="site-brand" href="/">
+					<div class="flex items-center gap-2.5">
+						<img
+							alt="Awake icon"
+							loading="eager"
+							width="36"
+							height="36"
+							decoding="async"
+							class="app-icon-squircle size-8 shrink-0 object-contain"
+							src="/awake-icon.png"
+						/>
+						<span class="font-bold tracking-tight text-xl text-foreground select-none">Awake</span>
+					</div>
+				</a>
+
+				<ul class="desktop-nav-links">
+					<li><a href="#demo">Demo</a></li>
+					<li><a href="#features">Features</a></li>
+					<li><a href="#clamshell">Closed-Lid</a></li>
+					<li><a href="#cli">CLI & Terminal</a></li>
+					<li><a href="#open-source">Open Source</a></li>
+					<li><a href="#faq">FAQ</a></li>
+				</ul>
+
+				<div class="nav-actions">
+					<button
+						type="button"
+						id="theme-toggle"
+						class="appearance-toggle"
+						aria-label="Toggle theme appearance"
+						title="Toggle theme appearance"
+					>
+						<span class="appearance-icon" aria-hidden="true">
+							<span class="sun-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun">
+									<circle cx="12" cy="12" r="4"></circle>
+									<path d="M12 2v2"></path>
+									<path d="M12 20v2"></path>
+									<path d="m4.93 4.93 1.41 1.41"></path>
+									<path d="m17.66 17.66 1.41 1.41"></path>
+									<path d="M2 12h2"></path>
+									<path d="M20 12h2"></path>
+									<path d="m6.34 17.66-1.41 1.41"></path>
+									<path d="m19.07 4.93-1.41 1.41"></path>
+								</svg>
+							</span>
+							<span class="moon-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon">
+									<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+								</svg>
+							</span>
+						</span>
+					</button>
+
+					<a
+						class="apple-button apple-button-secondary nav-github"
+						href="https://github.com/pawanbhayde/awake"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+							<path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"></path>
+						</svg>
+						GitHub
+					</a>
+
+					<a
+						class="apple-button nav-desktop-buy"
+						href="/Awake.dmg"
+						download=""
+					>
+						<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" focusable="false" aria-hidden="true">
+							<path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path>
+						</svg>
+						Download Free
+					</a>
+
+					<a
+						class="apple-button nav-buy"
+						href="/Awake.dmg"
+						download=""
+					>
+						Download Free
+					</a>
+
+					<button
+						type="button"
+						id="mobile-toggle"
+						class="mobile-menu-toggle"
+						aria-label="Open menu"
+						aria-expanded="false"
+						aria-controls="mobile-navigation"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+							<path d="M4 5h16"></path>
+							<path d="M4 12h16"></path>
+							<path d="M4 19h16"></path>
+						</svg>
+					</button>
+				</div>
+			</nav>
+
+			<!-- Mobile navigation panel -->
+			<div id="mobile-navigation" class="mobile-nav-panel" style="display: none;">
+				<a href="#demo" class="mobile-nav-link">Demo</a>
+				<a href="#features" class="mobile-nav-link">Features</a>
+				<a href="#clamshell" class="mobile-nav-link">Closed-Lid Mode</a>
+				<a href="#cli" class="mobile-nav-link">CLI & Terminal</a>
+				<a href="#open-source" class="mobile-nav-link">Open Source</a>
+				<a href="#faq" class="mobile-nav-link">FAQ</a>
+				<a href="https://github.com/pawanbhayde/awake" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Star on GitHub</a>
+			</div>
+		</header>
+
+		<main id="main-content">
+			<!-- Hero Section -->
+			<section class="product-hero" aria-labelledby="hero-title">
+				<div class="hero-copy">
+					<h1 id="hero-title">
+						Your Mac.<br />
+						<span>Wide Awake.</span>
+					</h1>
+					<p>
+						Keep your Mac awake while your long builds, machine learning models, and AI agents run—even with the lid closed.
+					</p>
+					<div class="hero-actions">
+						<a
+							class="apple-button"
+							href="/Awake.dmg"
+							download=""
+						>
+							<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" focusable="false" aria-hidden="true">
+								<path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path>
+							</svg>
+							Download for Mac
+						</a>
+						<a
+							class="apple-button apple-button-secondary"
+							href="https://github.com/pawanbhayde/awake"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							View on GitHub
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
+								<path d="m9 18 6-6-6-6"></path>
+							</svg>
+						</a>
+					</div>
+					<p class="hero-license-note">100% Free &amp; Open Source · Zero dependencies · Zero telemetry · Universal Binary</p>
+				</div>
+
+				<!-- Hero Product Demo Showcase -->
+				<figure id="demo" class="hero-product-demo">
+					<div class="hero-screen">
+						<div class="desktop-mockup">
+							<!-- macOS Menu Bar -->
+							<div class="macos-menubar">
+								<div class="menubar-left">
+									<span class="apple-logo"></span>
+									<span class="app-name">Awake</span>
+									<span class="menu-item">File</span>
+									<span class="menu-item">Edit</span>
+									<span class="menu-item">View</span>
+									<span class="menu-item">Window</span>
+									<span class="menu-item">Help</span>
+								</div>
+								<div class="menubar-right">
+									<!-- Awake Menu Bar Item -->
+									<div class="awake-status-item active" id="hero-menubar-status">
+										<span class="status-cup">☕️</span>
+										<span class="status-pulse-dot"></span>
+										<span class="status-timer-text" id="menubar-time-text">01:45:00</span>
+									</div>
+									<span class="menubar-icon">
+										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+									</span>
+									<span class="menubar-battery">94% ⚡️</span>
+									<span class="menubar-clock" id="current-clock">9:41 AM</span>
+								</div>
+							</div>
+
+							<!-- Desktop Wallpaper Canvas with Awake Popover -->
+							<div class="desktop-canvas">
+								<div class="popover-wrapper">
+									<div class="awake-popover">
+										<!-- Popover Header -->
+										<div class="popover-head">
+											<div class="popover-title-row">
+												<img src="/awake-icon.png" alt="Awake" class="popover-app-icon" />
+												<div>
+													<div class="popover-name">Awake</div>
+													<div class="popover-version">macOS Native · v1.0.0</div>
+												</div>
+											</div>
+											<div class="popover-badges">
+												<span class="badge-status-active" id="hero-badge">ACTIVE</span>
+												<button class="settings-gear-btn" title="Open Settings (⌘,)">
+													<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+												</button>
+											</div>
+										</div>
+
+										<!-- Primary Active State Banner -->
+										<div class="popover-state-card" id="state-card">
+											<div class="state-icon-pulse">
+												<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><path d="m4.93 4.93 2.83 2.83"></path><path d="M2 12h4"></path><path d="m4.93 19.07 2.83-2.83"></path><path d="M12 18v4"></path><path d="m19.07 19.07-2.83-2.83"></path><path d="M18 12h4"></path><path d="m19.07 4.93-2.83 2.83"></path></svg>
+											</div>
+											<div class="state-info">
+												<div class="state-headline">Keep-Awake Active</div>
+												<div class="state-timer" id="hero-countdown">01:45:00 remaining</div>
+											</div>
+											<button class="popover-toggle-btn" id="btn-toggle-session" title="Toggle keep-awake session">
+												<span class="btn-toggle-knob"></span>
+											</button>
+										</div>
+
+										<!-- Quick Duration Presets -->
+										<div class="popover-section-label">QUICK TIMERS</div>
+										<div class="preset-pill-grid">
+											<button class="preset-pill" data-time="15m">15m</button>
+											<button class="preset-pill" data-time="30m">30m</button>
+											<button class="preset-pill" data-time="1h">1h</button>
+											<button class="preset-pill active" data-time="2h">2h</button>
+											<button class="preset-pill" data-time="4h">4h</button>
+											<button class="preset-pill" data-time="unlimited">∞</button>
+										</div>
+
+										<!-- Feature Toggles in Popover -->
+										<div class="popover-toggles">
+											<div class="popover-toggle-row">
+												<div class="toggle-desc">
+													<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"></path><path d="M20.054 15.987H3.946"></path></svg>
+													<div>
+														<strong>Closed-Lid Mode</strong>
+														<span>Ready to close lid safely</span>
+													</div>
+												</div>
+												<span class="mac-switch"></span>
+											</div>
+
+											<div class="popover-toggle-row">
+												<div class="toggle-desc">
+													<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 7-3 5h4l-3 5"></path><path d="M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935"></path><path d="M22 14v-4"></path><path d="M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936"></path></svg>
+													<div>
+														<strong>Battery Cutoff Guard</strong>
+														<span>Auto-stop at 20%</span>
+													</div>
+												</div>
+												<span class="mac-stepper">20%</span>
+											</div>
+
+											<div class="popover-toggle-row">
+												<div class="toggle-desc">
+													<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="12" x="3" y="4" rx="2"></rect><line x1="2" x2="22" y1="20" y2="20"></line></svg>
+													<div>
+														<strong>Presentation Mode</strong>
+														<span>Mutes alerts &amp; keeps display lit</span>
+													</div>
+												</div>
+												<span class="mac-switch"></span>
+											</div>
+										</div>
+
+										<!-- Popover Actions Footer -->
+										<div class="popover-actions-footer">
+											<button class="action-sub-btn" id="btn-add-15">+15m</button>
+											<button class="action-sub-btn" id="btn-pause-resume">Pause</button>
+											<button class="action-sub-btn" id="btn-stop-session">Stop</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<figcaption class="demo-caption">
+						<span>Your session, a single click away in the menu bar.</span>
+						<span class="demo-shortcut">
+							Settings <kbd>⌘</kbd> <kbd>,</kbd>
+						</span>
+					</figcaption>
+				</figure>
+			</section>
+
+			<!-- Features Section -->
+			<section id="features" aria-label="Features" class="product-features section-shell">
+				<!-- Feature 1: Focus Feature Sessions -->
+				<article id="sessions" class="focus-feature" aria-labelledby="sessions-title">
+					<div class="feature-copy">
+						<h2 id="sessions-title">
+							Start the session.<br />
+							<span>Walk away.</span>
+						</h2>
+						<p>
+							Pick a timer preset or let it run indefinitely. An active glowing indicator in your macOS menu bar confirms your system won't sleep, sleep-lock, or kill background tasks.
+						</p>
+					</div>
+
+					<figure class="session-stage">
+						<div class="session-recording">
+							<div class="feature-mock-card">
+								<div class="mock-header">
+									<div class="mock-pill">15m</div>
+									<div class="mock-pill">30m</div>
+									<div class="mock-pill">1h</div>
+									<div class="mock-pill active-pill">2h Active</div>
+									<div class="mock-pill">Unlimited ∞</div>
+								</div>
+								<div class="mock-countdown-box">
+									<span class="mock-timer-digits">01:59:48</span>
+									<span class="mock-timer-sub">Time remaining until display sleep allowed</span>
+								</div>
+								<div class="mock-footer-row">
+									<span class="mock-active-dot"></span>
+									<span>System Sleep Assertion: <strong>Active (IOPMAssertion)</strong></span>
+								</div>
+							</div>
+						</div>
+						<figcaption class="sr-only">Awake menu bar session controls and timer duration presets.</figcaption>
+					</figure>
+				</article>
+
+				<!-- Feature Pair 1: Closed-Lid Clamshell & Battery Guard -->
+				<div class="feature-pair" id="clamshell">
+					<!-- Closed-Lid Mode -->
+					<article id="closed-lid" class="feature-tile" aria-labelledby="closed-lid-title">
+						<div class="feature-tile-copy">
+							<h2 id="closed-lid-title">
+								Close the lid.<br />
+								<span>Keep it running.</span>
+							</h2>
+							<p>
+								Run long compiles, dataset transfers, and LLM inferences with your MacBook lid closed—without needing an external monitor.
+							</p>
+						</div>
+
+						<div class="feature-stage stage-lid" role="img" aria-label="Awake closed-lid clamshell mode panel showing Ready to close the lid">
+							<div class="mac-panel" aria-hidden="true">
+								<div class="mac-panel-row mac-panel-head">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop">
+										<path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"></path>
+										<path d="M20.054 15.987H3.946"></path>
+									</svg>
+									<strong>Closed-lid mode</strong>
+									<span class="mac-switch"></span>
+								</div>
+								<ol class="mac-steps">
+									<li>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+											<path d="M20 6 9 17l-5-5"></path>
+										</svg>
+										Clamshell assertion active
+									</li>
+									<li>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+											<path d="M20 6 9 17l-5-5"></path>
+										</svg>
+										Session running<span>01:59:54</span>
+									</li>
+								</ol>
+								<div class="mac-status">
+									<span class="mac-status-dot"></span>
+									<div>
+										<strong>Ready to close the lid</strong>
+										<span>Your session is protected</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- Battery & Power -->
+					<article id="battery" class="feature-tile" aria-labelledby="battery-title">
+						<div class="feature-tile-copy">
+							<h2 id="battery-title">
+								Plug in.<br />
+								<span>Or don’t.</span>
+							</h2>
+							<p>
+								Require a power adapter, or run on battery down to a cutoff threshold you set with thermal safeguards.
+							</p>
+						</div>
+
+						<div class="feature-stage stage-battery" role="img" aria-label="Awake Battery and Power settings with a 20% battery cutoff">
+							<div class="mac-panel" aria-hidden="true">
+								<div class="mac-panel-row mac-panel-head">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-battery-charging">
+										<path d="m11 7-3 5h4l-3 5"></path>
+										<path d="M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935"></path>
+										<path d="M22 14v-4"></path>
+										<path d="M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936"></path>
+									</svg>
+									<strong>Battery &amp; Power Guard</strong>
+								</div>
+								<div class="mac-panel-row">
+									<strong>Require a power adapter</strong>
+									<span class="mac-switch"></span>
+								</div>
+								<div class="mac-panel-row">
+									<strong>End sessions on low battery</strong>
+									<span class="mac-switch"></span>
+								</div>
+								<div class="mac-panel-row">
+									<strong>Battery cutoff</strong>
+									<span class="mac-stepper">20%</span>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<!-- Feature Pair 2: App Triggers & CLI / URL Schemes -->
+				<div class="feature-pair" id="cli" style="margin-top: 1.5rem;">
+					<!-- App Triggers & Presentation -->
+					<article class="feature-tile" aria-labelledby="triggers-title">
+						<div class="feature-tile-copy">
+							<h2 id="triggers-title">
+								Launch an app.<br />
+								<span>Awake engages.</span>
+							</h2>
+							<p>
+								Automatically start keep-awake when Xcode, Final Cut Pro, Cursor, or Keynote launch. Turn on Presentation Mode with one click.
+							</p>
+						</div>
+
+						<div class="feature-stage stage-triggers" role="img" aria-label="App triggers and presentation mode">
+							<div class="mac-panel" aria-hidden="true">
+								<div class="mac-panel-row mac-panel-head">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+									<strong>Active App Triggers</strong>
+								</div>
+								<div class="mac-panel-row">
+									<div>
+										<strong>Xcode / Cursor</strong>
+										<span>Auto-activate while running</span>
+									</div>
+									<span class="mac-switch"></span>
+								</div>
+								<div class="mac-panel-row">
+									<div>
+										<strong>Presentation Mode</strong>
+										<span>Mutes notifications &amp; hides icons</span>
+									</div>
+									<span class="mac-switch"></span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- Terminal Native & CLI -->
+					<article class="feature-tile" aria-labelledby="cli-title">
+						<div class="feature-tile-copy">
+							<h2 id="cli-title">
+								Terminal native.<br />
+								<span>Shortcuts &amp; CLI.</span>
+							</h2>
+							<p>
+								Script everything from your shell, Raycast, Alfred, or Apple Shortcuts with the native awake command-line tool.
+							</p>
+						</div>
+
+						<div class="feature-stage stage-terminal" role="img" aria-label="Awake CLI in terminal">
+							<div class="terminal-card">
+								<div class="terminal-bar">
+									<div class="terminal-lights">
+										<span class="light-red"></span>
+										<span class="light-yellow"></span>
+										<span class="light-green"></span>
+									</div>
+									<span class="terminal-title">zsh — awake-cli</span>
+									<button class="terminal-copy-btn" id="copy-cli-btn" title="Copy CLI command">Copy</button>
+								</div>
+								<pre class="terminal-body"><code><span class="term-dim">$</span> <span class="term-cmd">awake start</span> 2h --clamshell
+<span class="term-success">✔ Awake session started: 2 hours</span>
+<span class="term-dim">$</span> <span class="term-cmd">awake status</span>
+<span class="term-active">Active</span> | 01:59:58 | Clamshell: Yes | AC: Yes</code></pre>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<!-- Spec Highlights / Details -->
+				<div class="mac-details">
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-keyhole">
+							<circle cx="12" cy="16" r="1"></circle>
+							<rect x="3" y="10" width="18" height="12" rx="2"></rect>
+							<path d="M7 10V7a5 5 0 0 1 10 0v3"></path>
+						</svg>
+						<p>
+							<strong>100% Private &amp; Offline.</strong>
+							<span>Zero analytics, zero tracking, zero network calls. Everything stays local.</span>
+						</p>
+					</div>
+
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-command">
+							<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path>
+						</svg>
+						<p>
+							<strong>Universal &amp; Native.</strong>
+							<span>Compiled for Apple Silicon (M1–M4) and Intel Macs on macOS 14 Sonoma or later.</span>
+						</p>
+					</div>
+
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor">
+							<rect width="20" height="14" x="2" y="3" rx="2"></rect>
+							<line x1="8" x2="16" y1="21" y2="21"></line>
+							<line x1="12" x2="12" y1="17" y2="21"></line>
+						</svg>
+						<p>
+							<strong>Under 10MB Footprint.</strong>
+							<span>Pure AppKit and SwiftUI. Zero third-party baggage, nearly 0% idle CPU usage.</span>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Open Source / Freedom Section -->
+			<section id="open-source" aria-labelledby="pricing-title" class="pricing-section section-shell">
+				<div class="section-heading">
+					<h2 id="pricing-title">
+						Yours.<br />
+						<span>Free &amp; Open Source Forever.</span>
+					</h2>
+					<p>
+						No paywalls. No recurring subscriptions. No license keys.<br />
+						Every single feature is unlocked for everyone.
+					</p>
+				</div>
+
+				<div class="pricing-composition">
+					<article class="license-panel">
+						<h3>Open Source Edition</h3>
+						<div class="license-price">
+							<span>$0</span>
+							<p>
+								USD<br />Free Forever
+							</p>
+						</div>
+						<p class="license-description">Keep your Mac running for as long as you need.</p>
+						<ul>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Unlimited Macs &amp; devices
+							</li>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Closed-lid clamshell mode included
+							</li>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Terminal CLI &amp; URL scheme automation
+							</li>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								Zero telemetry &amp; 100% private
+							</li>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								App triggers &amp; Presentation mode
+							</li>
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+									<path d="M20 6 9 17l-5-5"></path>
+								</svg>
+								MIT License &amp; GitHub updates
+							</li>
+						</ul>
+
+						<a
+							class="apple-button license-buy"
+							href="/Awake.dmg"
+							download=""
+						>
+							Download Free DMG (v1.0.0)
+							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+								<path d="M5 12h14"></path>
+								<path d="m12 5 7 7-7 7"></path>
+							</svg>
+						</a>
+
+						<a
+							class="license-download"
+							href="https://github.com/pawanbhayde/awake"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+								<path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"></path>
+							</svg>
+							Fork or Star on GitHub
+						</a>
+
+						<p class="license-guarantee">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+								<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+								<path d="m9 12 2 2 4-4"></path>
+							</svg>
+							<span>Free and Open Source under the MIT License</span>
+						</p>
+					</article>
+				</div>
+
+				<p class="pricing-footnote">
+					macOS 14 Sonoma or later · Apple silicon &amp; Intel.<br />
+					<a href="https://github.com/pawanbhayde/awake/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Read the MIT License terms.</a>
+				</p>
+			</section>
+
+			<!-- FAQ Section -->
+			<section id="faq" aria-labelledby="faq-title" class="faq-section section-shell">
+				<div class="faq-intro">
+					<h2 id="faq-title">
+						A few things<br />
+						<span>worth knowing.</span>
+					</h2>
+					<p>How Awake keeps your Mac awake, battery safety, and CLI commands.</p>
+					<a class="apple-text-link" href="https://github.com/pawanbhayde/awake/issues" target="_blank" rel="noopener noreferrer">
+						Ask on GitHub Issues
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+							<path d="M7 7h10v10"></path>
+							<path d="M7 17 17 7"></path>
+						</svg>
+					</a>
+				</div>
+
+				<div class="faq-content">
+					<div class="faq-category">
+						<h3>Using Awake</h3>
+						<details name="faq-0">
+							<summary>
+								<span>How do I keep my Mac awake?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Click the coffee cup icon in your menu bar. Choose a quick timer preset (15m, 30m, 1h, 2h, 4h) or Unlimited, then click the master switch. A pulsating amber/green dot indicates that your keep-awake assertion is active. Closing the popover keeps the session active in the background until it expires or you stop it.</p>
+						</details>
+
+						<details name="faq-0">
+							<summary>
+								<span>Can my MacBook stay awake with the lid closed?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Yes. Awake features native Clamshell Sleep Prevention using macOS IOKit power management assertions. When Closed-Lid Mode is enabled and Awake shows “Ready to close the lid”, you can safely close your MacBook lid while downloads, builds, or servers continue running in the background.</p>
+						</details>
+
+						<details name="faq-0">
+							<summary>
+								<span>What is Presentation Mode?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Presentation Mode is a one-click mode designed for meetings, webinars, and screen sharing. It keeps your display on, temporarily suppresses Do Not Disturb notifications, and cleans up desktop clutter so your presentation remains uninterrupted.</p>
+						</details>
+					</div>
+
+					<div class="faq-category">
+						<h3>Power &amp; Safety</h3>
+						<details name="faq-1">
+							<summary>
+								<span>What safeguards protect my battery and hardware?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Awake includes automated Battery &amp; Thermal Guards. You can require AC power or specify a battery percentage cutoff (e.g. 20%). If battery falls below that threshold or if your Mac detects high thermal pressure with the lid closed, Awake gracefully terminates the keep-awake assertion to protect your Mac.</p>
+						</details>
+
+						<details name="faq-1">
+							<summary>
+								<span>What is the difference between Display Sleep and System Sleep?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Display sleep turns off your MacBook or external screen backlight while keeping the CPU, network, and background tasks alive. System sleep halts the CPU and pauses background work. Awake lets you choose whether you want to prevent just system sleep or display sleep as well.</p>
+						</details>
+					</div>
+
+					<div class="faq-category">
+						<h3>Automation &amp; Open Source</h3>
+						<details name="faq-2">
+							<summary>
+								<span>How do I control Awake from the Terminal or Raycast?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Awake bundles a lightweight command-line tool `awake-cli`. You can run `awake start 2h`, `awake stop`, `awake toggle`, and `awake status`. Awake also supports URL schemes like `open "awake://start?duration=3600"` and `open "awake://settings"` for easy Shortcuts, Alfred, or Raycast integrations.</p>
+						</details>
+
+						<details name="faq-2">
+							<summary>
+								<span>Is Awake really 100% free with no catches?</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+									<path d="M5 12h14"></path>
+									<path d="M12 5v14"></path>
+								</svg>
+							</summary>
+							<p>Yes. Awake is completely free and licensed under the permissive MIT open-source license. There are no subscriptions, in-app purchases, license activations, or tracking SDKs. You can inspect the complete Swift source code on GitHub and build it yourself.</p>
+						</details>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="site-footer">
+			<div class="section-shell">
+				<div class="footer-main">
+					<div class="footer-brand">
+						<a aria-label="Awake home" href="/">
+							<div class="flex items-center gap-2.5">
+								<img
+									alt="Awake"
+									loading="lazy"
+									width="36"
+									height="36"
+									decoding="async"
+									class="app-icon-squircle size-8 shrink-0 object-contain"
+									src="/awake-icon.png"
+								/>
+								<span class="font-bold tracking-tight text-xl text-foreground select-none">Awake</span>
+							</div>
+						</a>
+						<p>Keep your Mac awake. Zero telemetry, 100% free.</p>
+						<nav aria-label="Social links" class="footer-social">
+							<a aria-label="GitHub" href="https://github.com/pawanbhayde/awake" target="_blank" rel="noopener noreferrer">
+								<span class="footer-social-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+										<path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"></path>
+									</svg>
+								</span>
+								<span class="footer-social-label">
+									GitHub
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+										<path d="M7 7h10v10"></path>
+										<path d="M7 17 17 7"></path>
+									</svg>
+								</span>
+							</a>
+						</nav>
+					</div>
+
+					<div class="footer-navigation">
+						<nav aria-label="Product links">
+							<ul class="footer-links footer-product-links">
+								<li><a href="#features">Features</a></li>
+								<li><a href="#clamshell">Closed-Lid Mode</a></li>
+								<li><a href="#cli">CLI &amp; Terminal</a></li>
+								<li><a href="/Awake.dmg" download="">Download DMG</a></li>
+							</ul>
+						</nav>
+						<nav aria-label="Help and support">
+							<ul class="footer-links footer-support-links">
+								<li><a href="#faq">FAQs</a></li>
+								<li><a href="https://github.com/pawanbhayde/awake" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+								<li><a href="https://github.com/pawanbhayde/awake/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+
+				<div class="footer-bottom">
+					<p class="footer-copyright">
+						© 2026 Awake. <span>Native macOS Keep-Awake Utility. MIT Licensed.</span>
+					</p>
+					<nav aria-label="Product directories" class="footer-discovery">
+						<a target="_blank" rel="noopener noreferrer" href="https://github.com/pawanbhayde/awake/releases">
+							Release Notes
+							<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+								<path d="M7 7h10v10"></path>
+								<path d="M7 17 17 7"></path>
+							</svg>
+						</a>
+						<a target="_blank" rel="noopener noreferrer" href="https://github.com/pawanbhayde/awake/blob/main/LICENSE">
+							MIT License
+							<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+								<path d="M7 7h10v10"></path>
+								<path d="M7 17 17 7"></path>
+							</svg>
+						</a>
+					</nav>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<!-- Interactive Client-side Scripting -->
+	<script is:inline>
+		// Theme appearance toggling
+		const toggleBtn = document.getElementById('theme-toggle');
+		toggleBtn?.addEventListener('click', () => {
+			const isDark = document.documentElement.classList.contains('dark');
+			if (isDark) {
+				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.add('light');
+				localStorage.setItem('awake-appearance', 'light');
+			} else {
+				document.documentElement.classList.remove('light');
+				document.documentElement.classList.add('dark');
+				localStorage.setItem('awake-appearance', 'dark');
+			}
+		});
+
+		// Mobile navigation drawer toggling
+		const mobileToggle = document.getElementById('mobile-toggle');
+		const mobileNav = document.getElementById('mobile-navigation');
+		mobileToggle?.addEventListener('click', () => {
+			const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+			mobileToggle.setAttribute('aria-expanded', !isExpanded);
+			if (mobileNav) {
+				mobileNav.style.display = isExpanded ? 'none' : 'block';
+			}
+		});
+
+		// Close mobile navigation when a link is clicked
+		document.querySelectorAll('.mobile-nav-link').forEach(link => {
+			link.addEventListener('click', () => {
+				mobileToggle?.setAttribute('aria-expanded', 'false');
+				if (mobileNav) mobileNav.style.display = 'none';
+			});
+		});
+
+		// Real-time clock in menu bar
+		function updateClock() {
+			const now = new Date();
+			const clockEl = document.getElementById('current-clock');
+			if (clockEl) {
+				clockEl.textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+			}
+		}
+		updateClock();
+		setInterval(updateClock, 30000);
+
+		// Interactive Popover Timer in Demo
+		let activeSeconds = 6300; // 1h 45m
+		let isSessionRunning = true;
+		const countdownEl = document.getElementById('hero-countdown');
+		const menubarTimeEl = document.getElementById('menubar-time-text');
+		const stateCard = document.getElementById('state-card');
+		const heroBadge = document.getElementById('hero-badge');
+		const heroMenubarStatus = document.getElementById('hero-menubar-status');
+
+		function formatTime(totalSec) {
+			if (totalSec <= 0) return '00:00:00';
+			const h = Math.floor(totalSec / 3600);
+			const m = Math.floor((totalSec % 3600) / 60);
+			const s = totalSec % 60;
+			return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+		}
+
+		setInterval(() => {
+			if (isSessionRunning && activeSeconds > 0) {
+				activeSeconds--;
+				const formatted = formatTime(activeSeconds);
+				if (countdownEl) countdownEl.textContent = `${formatted} remaining`;
+				if (menubarTimeEl) menubarTimeEl.textContent = formatted;
+			}
+		}, 1000);
+
+		// Preset Pills
+		document.querySelectorAll('.preset-pill').forEach(pill => {
+			pill.addEventListener('click', () => {
+				document.querySelectorAll('.preset-pill').forEach(p => p.classList.remove('active'));
+				pill.classList.add('active');
+				const t = pill.getAttribute('data-time');
+				if (t === '15m') activeSeconds = 900;
+				else if (t === '30m') activeSeconds = 1800;
+				else if (t === '1h') activeSeconds = 3600;
+				else if (t === '2h') activeSeconds = 7200;
+				else if (t === '4h') activeSeconds = 14400;
+				else if (t === 'unlimited') {
+					activeSeconds = 999999;
+					if (countdownEl) countdownEl.textContent = 'Indefinite Keep-Awake';
+					if (menubarTimeEl) menubarTimeEl.textContent = '∞ Indefinite';
+					return;
+				}
+				const formatted = formatTime(activeSeconds);
+				if (countdownEl) countdownEl.textContent = `${formatted} remaining`;
+				if (menubarTimeEl) menubarTimeEl.textContent = formatted;
+			});
+		});
+
+		// Session Toggle Button
+		const toggleSessionBtn = document.getElementById('btn-toggle-session');
+		toggleSessionBtn?.addEventListener('click', () => {
+			isSessionRunning = !isSessionRunning;
+			if (isSessionRunning) {
+				stateCard?.classList.remove('paused');
+				heroMenubarStatus?.classList.add('active');
+				if (heroBadge) {
+					heroBadge.textContent = 'ACTIVE';
+					heroBadge.className = 'badge-status-active';
+				}
+			} else {
+				stateCard?.classList.add('paused');
+				heroMenubarStatus?.classList.remove('active');
+				if (heroBadge) {
+					heroBadge.textContent = 'PAUSED';
+					heroBadge.className = 'badge-status-paused';
+				}
+				if (countdownEl) countdownEl.textContent = 'Session paused';
+				if (menubarTimeEl) menubarTimeEl.textContent = 'Paused';
+			}
+		});
+
+		// Add 15m Button
+		document.getElementById('btn-add-15')?.addEventListener('click', () => {
+			activeSeconds += 900;
+			const formatted = formatTime(activeSeconds);
+			if (countdownEl) countdownEl.textContent = `${formatted} remaining`;
+			if (menubarTimeEl) menubarTimeEl.textContent = formatted;
+		});
+
+		// Pause / Resume Button
+		document.getElementById('btn-pause-resume')?.addEventListener('click', () => {
+			toggleSessionBtn?.click();
+		});
+
+		// Stop Button
+		document.getElementById('btn-stop-session')?.addEventListener('click', () => {
+			isSessionRunning = false;
+			activeSeconds = 0;
+			stateCard?.classList.add('paused');
+			heroMenubarStatus?.classList.remove('active');
+			if (heroBadge) {
+				heroBadge.textContent = 'STOPPED';
+				heroBadge.className = 'badge-status-paused';
+			}
+			if (countdownEl) countdownEl.textContent = 'Session stopped';
+			if (menubarTimeEl) menubarTimeEl.textContent = 'Idle';
+		});
+
+		// Copy CLI command button
+		const copyBtn = document.getElementById('copy-cli-btn');
+		copyBtn?.addEventListener('click', () => {
+			navigator.clipboard.writeText('awake start 2h --clamshell').then(() => {
+				copyBtn.textContent = 'Copied!';
+				setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+			});
+		});
+	</script>
+</Layout>
+
+<style>
+	/* Theme toggle icon switching */
+	:global(html.light) .sun-icon {
+		opacity: 0;
+		transform: scale(0.5) rotate(-90deg);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+	:global(html.light) .moon-icon {
+		opacity: 1;
+		transform: scale(1) rotate(0deg);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+	:global(html.dark) .sun-icon {
+		opacity: 1;
+		transform: scale(1) rotate(0deg);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+	:global(html.dark) .moon-icon {
+		opacity: 0;
+		transform: scale(0.5) rotate(-90deg);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	/* macOS Desktop Showcase Mockup */
+	.desktop-mockup {
+		background: #0f1115;
+		border-radius: 0.8125rem;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 0 1.5rem 3.5rem -1rem rgba(0, 0, 0, 0.6);
+	}
+
+	/* Top Menu Bar */
+	.macos-menubar {
+		height: 2rem;
+		background: rgba(30, 32, 38, 0.85);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1rem;
+		font-size: 0.8125rem;
+		color: #f5f5f7;
+		user-select: none;
+	}
+	.menubar-left {
+		display: flex;
+		align-items: center;
+		gap: 1.125rem;
+	}
+	.apple-logo {
+		font-size: 0.9375rem;
+		opacity: 0.9;
+	}
+	.app-name {
+		font-weight: 600;
+		letter-spacing: -0.01em;
+	}
+	.menu-item {
+		color: #ebebf599;
+		cursor: default;
+	}
+	@media (max-width: 640px) {
+		.menu-item {
+			display: none;
+		}
+	}
+	.menubar-right {
+		display: flex;
+		align-items: center;
+		gap: 0.875rem;
+		font-size: 0.75rem;
+		color: #ebebf5bf;
+	}
+	.menubar-icon {
+		display: flex;
+		align-items: center;
+		color: #ebebf5bf;
+	}
+	.menubar-battery {
+		font-variant-numeric: tabular-nums;
+	}
+	.menubar-clock {
+		font-variant-numeric: tabular-nums;
+		font-weight: 500;
+	}
+
+	/* Awake Menu Bar Active Item */
+	.awake-status-item {
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
+		background: rgba(255, 255, 255, 0.08);
+		border: 0.5px solid rgba(255, 255, 255, 0.16);
+		padding: 0.1875rem 0.5rem;
+		border-radius: 0.375rem;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+	.awake-status-item.active {
+		background: rgba(255, 122, 0, 0.15);
+		border-color: rgba(255, 122, 0, 0.4);
+	}
+	.status-cup {
+		font-size: 0.875rem;
+	}
+	.status-pulse-dot {
+		width: 0.4375rem;
+		height: 0.4375rem;
+		border-radius: 50%;
+		background: #30d158;
+		box-shadow: 0 0 6px #30d158;
+		animation: pulse-dot 2s infinite ease-in-out;
+	}
+	@keyframes pulse-dot {
+		0%, 100% { opacity: 1; transform: scale(1); }
+		50% { opacity: 0.4; transform: scale(0.85); }
+	}
+	.status-timer-text {
+		font-variant-numeric: tabular-nums;
+		font-weight: 500;
+		color: #fff;
+	}
+
+	/* Canvas & Popover Placement */
+	.desktop-canvas {
+		background: radial-gradient(circle at 50% 10%, #1e2638 0%, #0d1017 80%);
+		min-height: 27rem;
+		padding: 1.5rem 1rem 2.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		position: relative;
+	}
+	.popover-wrapper {
+		width: 100%;
+		max-width: 23rem;
+	}
+
+	/* Awake Popover Window */
+	.awake-popover {
+		background: #1c1c1e;
+		border: 0.5px solid rgba(255, 255, 255, 0.18);
+		border-radius: 0.875rem;
+		padding: 1.125rem;
+		box-shadow: 0 1.25rem 3rem -0.5rem rgba(0, 0, 0, 0.7), inset 0 0.5px 0 rgba(255, 255, 255, 0.2);
+		color: #f5f5f7;
+		display: flex;
+		flex-direction: column;
+		gap: 0.875rem;
+	}
+	.popover-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.popover-title-row {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+	}
+	.popover-app-icon {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.4375rem;
+	}
+	.popover-name {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+	.popover-version {
+		font-size: 0.6875rem;
+		color: #ebebf599;
+	}
+	.popover-badges {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.badge-status-active {
+		background: rgba(48, 209, 88, 0.2);
+		color: #30d158;
+		border: 0.5px solid rgba(48, 209, 88, 0.4);
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		padding: 0.125rem 0.5rem;
+		border-radius: 0.375rem;
+	}
+	.badge-status-paused {
+		background: rgba(255, 159, 10, 0.2);
+		color: #ff9f0a;
+		border: 0.5px solid rgba(255, 159, 10, 0.4);
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		padding: 0.125rem 0.5rem;
+		border-radius: 0.375rem;
+	}
+	.settings-gear-btn {
+		background: rgba(255, 255, 255, 0.08);
+		border: 0.5px solid rgba(255, 255, 255, 0.15);
+		color: #ebebf5bf;
+		width: 1.875rem;
+		height: 1.875rem;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+	.settings-gear-btn:hover {
+		background: rgba(255, 255, 255, 0.15);
+		color: #fff;
+	}
+
+	/* Popover State Card */
+	.popover-state-card {
+		background: linear-gradient(135deg, rgba(255, 122, 0, 0.15), rgba(255, 77, 0, 0.08));
+		border: 0.5px solid rgba(255, 122, 0, 0.3);
+		border-radius: 0.625rem;
+		padding: 0.75rem 0.875rem;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		transition: all 0.2s ease;
+	}
+	.popover-state-card.paused {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
+	.state-icon-pulse {
+		color: #ff7a00;
+		display: flex;
+		align-items: center;
+		animation: pulse-ring 2.5s infinite ease;
+	}
+	@keyframes pulse-ring {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.1); }
+	}
+	.popover-state-card.paused .state-icon-pulse {
+		color: #ebebf566;
+		animation: none;
+	}
+	.state-info {
+		flex: 1;
+	}
+	.state-headline {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: #fff;
+	}
+	.state-timer {
+		font-size: 0.75rem;
+		color: #ebebf5bf;
+		font-variant-numeric: tabular-nums;
+		margin-top: 0.125rem;
+	}
+	.popover-toggle-btn {
+		width: 2.25rem;
+		height: 1.375rem;
+		border-radius: 999px;
+		background: #ff7a00;
+		border: none;
+		position: relative;
+		cursor: pointer;
+		padding: 0;
+		transition: background-color 0.2s;
+	}
+	.popover-toggle-btn .btn-toggle-knob {
+		width: 1.125rem;
+		height: 1.125rem;
+		background: #fff;
+		border-radius: 50%;
+		position: absolute;
+		top: 0.125rem;
+		right: 0.125rem;
+		transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	}
+	.popover-state-card.paused .popover-toggle-btn {
+		background: #3a3a3c;
+	}
+	.popover-state-card.paused .popover-toggle-btn .btn-toggle-knob {
+		transform: translateX(-0.875rem);
+	}
+
+	/* Preset Pills */
+	.popover-section-label {
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: #ebebf566;
+		margin-top: 0.125rem;
+	}
+	.preset-pill-grid {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 0.375rem;
+	}
+	.preset-pill {
+		background: rgba(255, 255, 255, 0.08);
+		border: 0.5px solid rgba(255, 255, 255, 0.12);
+		color: #ebebf5bf;
+		padding: 0.375rem 0.25rem;
+		border-radius: 0.375rem;
+		font-size: 0.75rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		text-align: center;
+	}
+	.preset-pill:hover {
+		background: rgba(255, 255, 255, 0.16);
+		color: #fff;
+	}
+	.preset-pill.active {
+		background: #0071e3;
+		border-color: #0071e3;
+		color: #fff;
+		box-shadow: 0 1px 4px rgba(0, 113, 227, 0.4);
+	}
+
+	/* Popover Feature Toggles */
+	.popover-toggles {
+		border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding-top: 0.625rem;
+	}
+	.popover-toggle-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.25rem 0;
+	}
+	.toggle-desc {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+	}
+	.toggle-desc svg {
+		color: #ebebf599;
+	}
+	.toggle-desc strong {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: #fff;
+		display: block;
+	}
+	.toggle-desc span {
+		font-size: 0.6875rem;
+		color: #ebebf599;
+		display: block;
+	}
+
+	/* Popover Footer Buttons */
+	.popover-actions-footer {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.375rem;
+		margin-top: 0.25rem;
+	}
+	.action-sub-btn {
+		background: rgba(255, 255, 255, 0.08);
+		border: 0.5px solid rgba(255, 255, 255, 0.12);
+		color: #ebebf5bf;
+		padding: 0.375rem 0.5rem;
+		border-radius: 0.375rem;
+		font-size: 0.75rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+	.action-sub-btn:hover {
+		background: rgba(255, 255, 255, 0.16);
+		color: #fff;
+	}
+
+	/* Feature 1 Mock Card */
+	.feature-mock-card {
+		background: #1c1c1e;
+		border: 0.5px solid rgba(255, 255, 255, 0.2);
+		border-radius: 0.8125rem;
+		padding: 1.5rem;
+		box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.5);
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+	.mock-header {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	.mock-pill {
+		background: rgba(255, 255, 255, 0.08);
+		border: 0.5px solid rgba(255, 255, 255, 0.12);
+		color: #ebebf5bf;
+		padding: 0.375rem 0.75rem;
+		border-radius: 999px;
+		font-size: 0.75rem;
+		font-weight: 500;
+	}
+	.mock-pill.active-pill {
+		background: #0071e3;
+		border-color: #0071e3;
+		color: #fff;
+	}
+	.mock-countdown-box {
+		background: rgba(0, 0, 0, 0.3);
+		border-radius: 0.625rem;
+		padding: 1rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+	.mock-timer-digits {
+		font-size: 2.25rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		font-variant-numeric: tabular-nums;
+		color: #ff9f0a;
+	}
+	.mock-timer-sub {
+		font-size: 0.75rem;
+		color: #ebebf599;
+	}
+	.mock-footer-row {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.75rem;
+		color: #ebebf5bf;
+	}
+	.mock-active-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: #30d158;
+		box-shadow: 0 0 6px #30d158;
+	}
+
+	/* Terminal Mockup */
+	.stage-triggers,
+	.stage-terminal {
+		background: #1c55d6 url(/images/stage-light.jpg) 50%/cover no-repeat;
+	}
+	.terminal-card {
+		color: #f5f5f7;
+		background: #18191c;
+		border: 0.5px solid rgba(255, 255, 255, 0.2);
+		border-radius: 0.75rem;
+		width: min(100%, 22rem);
+		overflow: hidden;
+		box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.75);
+	}
+	.terminal-bar {
+		background: #25262a;
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 0.75rem;
+		border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+	}
+	.terminal-lights {
+		display: flex;
+		gap: 0.375rem;
+	}
+	.light-red { width: 0.625rem; height: 0.625rem; border-radius: 50%; background: #ff5f56; }
+	.light-yellow { width: 0.625rem; height: 0.625rem; border-radius: 50%; background: #ffbd2e; }
+	.light-green { width: 0.625rem; height: 0.625rem; border-radius: 50%; background: #27c93f; }
+	.terminal-title {
+		font-size: 0.6875rem;
+		font-weight: 500;
+		color: #ebebf599;
+	}
+	.terminal-copy-btn {
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		color: #ebebf5bf;
+		font-size: 0.625rem;
+		padding: 0.125rem 0.375rem;
+		border-radius: 0.25rem;
+		cursor: pointer;
+	}
+	.terminal-copy-btn:hover {
+		background: rgba(255, 255, 255, 0.2);
+		color: #fff;
+	}
+	.terminal-body {
+		padding: 0.875rem 1rem;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		font-size: 0.75rem;
+		line-height: 1.6;
+		margin: 0;
+	}
+	.term-dim { color: #ebebf566; }
+	.term-cmd { color: #f5f5f7; font-weight: 600; }
+	.term-success { color: #30d158; display: block; }
+	.term-active { color: #30d158; font-weight: 600; }
+</style>
